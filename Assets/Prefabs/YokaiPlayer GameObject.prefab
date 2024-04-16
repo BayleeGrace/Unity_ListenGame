@@ -83,12 +83,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77e23095e71c25439c0f8ba263972d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 35
   defaultMoveSpeed: 35
-  turnSpeed: 175
+  moveSpeed: 35
+  turnSpeed: 120
   mover: {fileID: 3861336430807849582}
   noiseMaker: {fileID: 3861336430807849583}
   noiseMakerVolume: 5
+  ability1Cooldown: 5
+  ability2Cooldown: 0
+  ability3Cooldown: 30
   whisperMoveSpeed: 20
   bloodlustMoveSpeed: 20
 --- !u!114 &3861336430807849582
@@ -363,9 +366,11 @@ MonoBehaviour:
   moveBackwardKey: 115
   rotateClockwiseKey: 100
   rotateCounterClockwiseKey: 97
+  ability1Key: 304
+  ability2Key: 101
+  ability3Key: 0
   pauseKey: 27
   pawnYokai: {fileID: 3861336430807849577}
-  whisperKey: 304
 --- !u!1 &3861336432410517412
 GameObject:
   m_ObjectHideFlags: 0

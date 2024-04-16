@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PawnYokai : Pawn
+public class PawnHuman : Pawn
 {
-    public float whisperMoveSpeed;
-    public float bloodlustMoveSpeed;
+    public float runSpeed;
 
     public override void Start()
     {
@@ -60,20 +59,6 @@ public class PawnYokai : Pawn
         }
     }
 
-    public void DoWhisper()
-    {
-        MakeNoise();
-        noiseMaker.PlayAbility1Sound();
-
-        // TODO: Slow movement speed by a set percentage
-        SetMovementSpeed(whisperMoveSpeed);
-
-        // TODO: Clear FOV for player
-
-        // TODO: Create a timer for this function
-
-    }
-
     public override void SetMovementSpeed(float newSpeed)
     {
         if (newSpeed > 0)
@@ -95,10 +80,13 @@ public class PawnYokai : Pawn
     public override void ActivateAbility1()
     {
         base.ActivateAbility1();
+        SetMovementSpeed(runSpeed);
     }
+
     public override void DeactivateAbility1()
     {
-        
+        ResetVariables();
+        //moveSpeed = defaultMoveSpeed;
     }
 
     public override void ActivateAbility2()
@@ -120,5 +108,4 @@ public class PawnYokai : Pawn
     {
 
     }
-    
 }

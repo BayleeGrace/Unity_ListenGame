@@ -5,26 +5,26 @@ using UnityEngine;
 public class PlayerControllerYokai : PlayerController
 {
     [HideInInspector] public PawnYokai pawnYokai;
-    public KeyCode whisperKey;
     public override void Start()
     {
+        pawnYokai = transform.parent.GetComponent<PawnYokai>();
         // TODO: Make this Yokai Player the first in the players list in the GamaManager
     }
 
-    public override void Update()
+    public override void FixedUpdate()
     {
-        base.Update();
+        base.FixedUpdate();
     }
 
     public override void ProcessInputs()
     {
         base.ProcessInputs();
-        if (Input.GetKey(whisperKey))
+        if (Input.GetKey(ability1Key))
         {
             pawnYokai.DoWhisper();
         }
 
-        if (!Input.GetKey(whisperKey))
+        if (!Input.GetKey(ability1Key))
         {
             pawnYokai.noiseMaker.StopAbility1Sound();
             pawnYokai.moveSpeed = pawnYokai.defaultMoveSpeed;

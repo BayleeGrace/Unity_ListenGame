@@ -5,15 +5,17 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerController : Controller
 {
-    #region Locomotion Controlls
+    #region Locomotion Controls
     public KeyCode moveForwardKey;
     public KeyCode moveBackwardKey;
     public KeyCode rotateClockwiseKey;
     public KeyCode rotateCounterClockwiseKey;
     private Mover mover;
-    #endregion Locomotion Controlls
-    // Variable to hold the pause key
-    public KeyCode pauseKey;
+    #endregion Locomotion Controls
+    public KeyCode ability1Key;
+    public KeyCode ability2Key;
+    public KeyCode ability3Key;
+    public KeyCode pauseKey; // Variable to hold the pause key
 
     public void Awake()
     {
@@ -25,20 +27,16 @@ public class PlayerController : Controller
         }
         // Run the Start() fx from the parent (base) class
         base.Start();
-        
     }
 
-    public override void Update()
+    public override void FixedUpdate()
     {
-        // Process your keyboard inputs
-        ProcessInputs();
         // Run the Update() fx from the parent class
-        base.Update();
+        base.FixedUpdate();
     }
 
-    public override void ProcessInputs() // I'm not sure why we do this?
+    public override void ProcessInputs()
     {
-        
         // Create a conditional that checks every frame (above) to see if the player has pressed X key within controller
         if (Input.GetKey(moveForwardKey))
         {
@@ -73,6 +71,21 @@ public class PlayerController : Controller
             pawn.RotateCounterClockwise();
         }
 
+        if (Input.GetKey(ability1Key))
+        {
+            pawn.ActivateAbility1();
+        }
+
+        if (Input.GetKey(ability2Key))
+        {
+            pawn.ActivateAbility2();
+        }
+
+        if (Input.GetKey(ability3Key))
+        {
+            pawn.ActivateAbility3();
+        }
+
         // If the player is not moving, change the volume distance to 0
         if (!Input.GetKey(moveForwardKey) && !Input.GetKey(moveBackwardKey) && !Input.GetKey(rotateClockwiseKey) && !Input.GetKey(rotateCounterClockwiseKey))
         {
@@ -93,13 +106,11 @@ public class PlayerController : Controller
     // OnDestroy() is not a custom function in Unity C#. We don't have to write a separate command to call this function.
     public void OnDestroy()
     {
-        /*
         // Instance tracking the destroyed player
         if (GameManager.instance.players != null)
         {
             GameManager.instance.players.Remove(this);
         }
-        */
     }
 
 }
