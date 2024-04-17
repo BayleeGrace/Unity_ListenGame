@@ -53,16 +53,28 @@ public abstract class Pawn : MonoBehaviour
     public virtual void ActivateAbility1()
     {
         StartAbilitiesTimer(ability1Cooldown);
+        noiseMaker.PlayAbility1Sound();
     }
-    public abstract void DeactivateAbility1();
+    public virtual void DeactivateAbility1()
+    {
+        noiseMaker.StopAbility1Sound();
+    }
     public virtual void ActivateAbility2()
     {
         StartAbilitiesTimer(ability2Cooldown);
+        noiseMaker.PlayAbility2Sound();
     }
-    public abstract void DeactivateAbility2();
+    public virtual void DeactivateAbility2()
+    {
+        noiseMaker.StopAbility2Sound();
+    }
     public virtual void ActivateAbility3()
     {
         StartAbilitiesTimer(ability3Cooldown);
+        noiseMaker.PlayAbility3Sound();
     }
-    public abstract void DeactivateAbility3();
+    public virtual void DeactivateAbility3()
+    {
+        noiseMaker.StopAbility3Sound();
+    }
 }

@@ -96,7 +96,7 @@ public class PawnHuman : Pawn
 
     public override void DeactivateAbility2()
     {
-        
+        base.DeactivateAbility2();
     }
 
     public override void ActivateAbility3()
@@ -106,6 +106,6 @@ public class PawnHuman : Pawn
 
     public override void DeactivateAbility3()
     {
-
+        base.DeactivateAbility3();
     }
 }

@@ -38,40 +38,58 @@ public class NoiseMaker : MonoBehaviour
 
     public void PlayAbility1Sound()
     {
-        if (ability1AudioSource.isPlaying == false)
+        if (ability1AudioSource != null)
         {
-            ability1AudioSource.Play();
+            if (ability1AudioSource.isPlaying == false)
+            {
+                ability1AudioSource.Play();
+            }
         }
     }
 
     public void StopAbility1Sound()
     {
-        ability1AudioSource.Pause();
+        if (ability1AudioSource != null)
+        {
+            ability1AudioSource.Pause();
+        }
     }
 
     public void PlayAbility2Sound()
     {
-        if (ability2AudioSource.isPlaying == false)
+        if (ability2AudioSource != null)
         {
-            ability2AudioSource.Play();
+            if (ability2AudioSource.isPlaying == false)
+            {
+                ability2AudioSource.Play();
+            }
         }
     }
 
     public void StopAbility2Sound()
     {
-        ability2AudioSource.Pause();
+        if (ability2AudioSource != null)
+        {
+            ability2AudioSource.Pause();
+        }
     }
 
     public void PlayAbility3Sound()
     {
-        if (ability3AudioSource.isPlaying == false)
+        if (ability3AudioSource != null)
         {
-            ability3AudioSource.Play();
+            if (ability3AudioSource.isPlaying == false)
+            {
+                ability3AudioSource.Play();
+            }
         }
     }
 
     public void StopAbility3Sound()
     {
-        ability3AudioSource.Pause();
+        if (ability3AudioSource != null)
+        {
+            ability3AudioSource.Pause();
+        }
     }
 }

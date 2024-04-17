@@ -19,15 +19,5 @@ public class PlayerControllerYokai : PlayerController
     public override void ProcessInputs()
     {
         base.ProcessInputs();
-        if (Input.GetKey(ability1Key))
-        {
-            pawnYokai.DoWhisper();
-        }
-
-        if (!Input.GetKey(ability1Key))
-        {
-            pawnYokai.noiseMaker.StopAbility1Sound();
-            pawnYokai.moveSpeed = pawnYokai.defaultMoveSpeed;
-        }
     }
 }

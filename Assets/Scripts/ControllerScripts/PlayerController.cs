@@ -76,14 +76,29 @@ public class PlayerController : Controller
             pawn.ActivateAbility1();
         }
 
+        if (!Input.GetKey(ability1Key))
+        {
+            pawn.DeactivateAbility1();
+        }
+
         if (Input.GetKey(ability2Key))
         {
             pawn.ActivateAbility2();
         }
 
+        if (!Input.GetKey(ability2Key))
+        {
+            pawn.DeactivateAbility2();
+        }
+
         if (Input.GetKey(ability3Key))
         {
             pawn.ActivateAbility3();
+        }
+
+        if (!Input.GetKey(ability3Key))
+        {
+            pawn.DeactivateAbility3();
         }
 
         // If the player is not moving, change the volume distance to 0

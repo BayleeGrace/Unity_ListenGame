@@ -60,20 +60,6 @@ public class PawnYokai : Pawn
         }
     }
 
-    public void DoWhisper()
-    {
-        MakeNoise();
-        noiseMaker.PlayAbility1Sound();
-
-        // TODO: Slow movement speed by a set percentage
-        SetMovementSpeed(whisperMoveSpeed);
-
-        // TODO: Clear FOV for player
-
-        // TODO: Create a timer for this function
-
-    }
-
     public override void SetMovementSpeed(float newSpeed)
     {
         if (newSpeed > 0)
@@ -95,29 +81,57 @@ public class PawnYokai : Pawn
     public override void ActivateAbility1()
     {
         base.ActivateAbility1();
+        DoWhisper();
     }
     public override void DeactivateAbility1()
     {
-        
+        base.DeactivateAbility1();
+        ResetVariables();
     }
 
     public override void ActivateAbility2()
     {
         base.ActivateAbility2();
+        // TODO: communicate with the PawnHuman and the Game Manager that the Yokai has won the game
+
     }
 
     public override void DeactivateAbility2()
     {
-        
+        base.DeactivateAbility2();
     }
 
     public override void ActivateAbility3()
     {
         base.ActivateAbility3();
+        DoBloodlust();
     }
 
     public override void DeactivateAbility3()
     {
+        base.DeactivateAbility3();
+        ResetVariables();
+    }
+
+    public void DoWhisper()
+    {
+        MakeNoise();
+
+        // TODO: Slow movement speed by a set percentage
+        SetMovementSpeed(whisperMoveSpeed);
+
+        // TODO: Clear FOV for player
+
+        // TODO: Create a timer for this function
+
+    }
+
+    public void DoBloodlust()
+    {
+        // Increase movement speed by a set speed (Bloodlust)
+        SetMovementSpeed(bloodlustMoveSpeed);
+
+        // TODO: Blur FOV for player even more
 
     }
     
