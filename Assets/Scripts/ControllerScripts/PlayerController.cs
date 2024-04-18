@@ -29,10 +29,10 @@ public class PlayerController : Controller
         base.Start();
     }
 
-    public override void FixedUpdate()
+    public override void Update()
     {
         // Run the Update() fx from the parent class
-        base.FixedUpdate();
+        base.Update();
     }
 
     public override void ProcessInputs()
@@ -71,43 +71,12 @@ public class PlayerController : Controller
             pawn.RotateCounterClockwise();
         }
 
-        if (Input.GetKey(ability1Key))
-        {
-            pawn.ActivateAbility1();
-        }
-
-        if (!Input.GetKey(ability1Key))
-        {
-            pawn.DeactivateAbility1();
-        }
-
-        if (Input.GetKey(ability2Key))
-        {
-            pawn.ActivateAbility2();
-        }
-
-        if (!Input.GetKey(ability2Key))
-        {
-            pawn.DeactivateAbility2();
-        }
-
-        if (Input.GetKey(ability3Key))
-        {
-            pawn.ActivateAbility3();
-        }
-
-        if (!Input.GetKey(ability3Key))
-        {
-            pawn.DeactivateAbility3();
-        }
-
         // If the player is not moving, change the volume distance to 0
         if (!Input.GetKey(moveForwardKey) && !Input.GetKey(moveBackwardKey) && !Input.GetKey(rotateClockwiseKey) && !Input.GetKey(rotateCounterClockwiseKey))
         {
             pawn.StopNoise();
             pawn.mover.isMoving = false;
             pawn.noiseMaker.StopMovingSound();
-            pawn.ResetVariables();
         }
 
         /*

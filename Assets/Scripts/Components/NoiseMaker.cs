@@ -10,6 +10,7 @@ public class NoiseMaker : MonoBehaviour
     public AudioSource ability1AudioSource;
     public AudioSource ability2AudioSource;
     public AudioSource ability3AudioSource;
+    public AudioSource passiveAbilityAudioSource;
     void Start()
     {
 
@@ -90,6 +91,25 @@ public class NoiseMaker : MonoBehaviour
         if (ability3AudioSource != null)
         {
             ability3AudioSource.Pause();
+        }
+    }
+
+    public void PlayPassiveAbilitySound()
+    {
+        if (passiveAbilityAudioSource != null)
+        {
+            if (passiveAbilityAudioSource.isPlaying == false)
+            {
+                passiveAbilityAudioSource.Play();
+            }
+        }
+    }
+
+    public void StopPassiveAbilitySound()
+    {
+        if (passiveAbilityAudioSource != null)
+        {
+            passiveAbilityAudioSource.Pause();
         }
     }
 }

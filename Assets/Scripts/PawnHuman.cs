@@ -72,11 +72,6 @@ public class PawnHuman : Pawn
         moveSpeed = defaultMoveSpeed;
     }
 
-    public override void StartAbilitiesTimer(float timer)
-    {
-
-    }
-
     public override void ActivateAbility1()
     {
         base.ActivateAbility1();

@@ -12,7 +12,7 @@ public class Controller : MonoBehaviour
         
     }
 
-    public virtual void FixedUpdate()
+    public virtual void Update()
     {
         ProcessInputs();
     }

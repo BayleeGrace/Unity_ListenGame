@@ -11,13 +11,32 @@ public class PlayerControllerYokai : PlayerController
         // TODO: Make this Yokai Player the first in the players list in the GamaManager
     }
 
-    public override void FixedUpdate()
+    public override void Update()
     {
-        base.FixedUpdate();
+        base.Update();
     }
 
     public override void ProcessInputs()
     {
         base.ProcessInputs();
+        if (Input.GetKey(ability1Key))
+        {
+            pawn.ActivateAbility1();
+        }
+
+        if (!Input.GetKey(ability1Key))
+        {
+            pawn.DeactivateAbility1();
+        }
+
+        if (Input.GetKeyDown(ability2Key))
+        {
+            pawn.ActivateAbility2();
+        }
+
+        if (Input.GetKeyDown(ability3Key))
+        {
+            pawn.ActivateAbility3();
+        }
     }
 }
