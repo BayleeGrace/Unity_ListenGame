@@ -13,10 +13,15 @@ public class PawnYokai : Pawn
     public override void Start()
     {
         base.Start();
+        targetPlayer = GameManager.instance.humanPlayer;
     }
 
     public override void Update()
     {
+        if (targetPlayer == null)
+        {
+            targetPlayer = GameManager.instance.humanPlayer;
+        }
         if (targetPlayer != null)
         {
             if (IsDistanceLessThan(targetPlayer, distanceToBloodlust))
@@ -90,12 +95,14 @@ public class PawnYokai : Pawn
     {
         base.ActivateAbility1();
         DoWhisper();
+        Debug.Log("Move speed is now " + moveSpeed);
     }
     public override void DeactivateAbility1()
     {
         base.DeactivateAbility1();
         StopNoise();
         ResetVariables();
+        Debug.Log("Move speed is now " + moveSpeed);
     }
 
     public override void ActivateAbility2()
@@ -146,7 +153,14 @@ public class PawnYokai : Pawn
         MakeNoise();
 
         // Slow movement speed by a set percentage
-        SetMovementSpeed(whisperMoveSpeed);
+        if (moveSpeed > defaultMoveSpeed)
+        {
+            SetMovementSpeed((whisperMoveSpeed/moveSpeed) * bloodlustMoveSpeed);
+        }
+        else 
+        {
+            SetMovementSpeed(whisperMoveSpeed);
+        }
 
         // TODO: Clear FOV for player
 

@@ -7,7 +7,7 @@ public class PatrolWaypoint : MonoBehaviour
     public GameObject nextWaypoint;
 
     // Start is called before the first frame update
-    void Start()
+    public void Awake()
     {
         
     }

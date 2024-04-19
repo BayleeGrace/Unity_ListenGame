@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5959168563244301689}
   - component: {fileID: 5959168563244301694}
-  - component: {fileID: 5959168563244301695}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -76,14 +75,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &5959168563244301695
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5959168563244301692}
-  m_Enabled: 1
 --- !u!1 &5959168563327653974
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,6 +120,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 468248237118520885}
+  fieldOfView: 0
+  maxViewDistance: 0
+  lastHit: {fileID: 0}
+  collision: {x: 0, y: 0, z: 0}
+  hearingDistance: 0
   moveForwardKey: 273
   moveBackwardKey: 274
   rotateClockwiseKey: 275
@@ -190,12 +186,12 @@ Rigidbody:
   m_GameObject: {fileID: 5959168563772143797}
   serializedVersion: 2
   m_Mass: 2
-  m_Drag: 1
-  m_AngularDrag: 1
+  m_Drag: 0
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 32
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &5959168563772143792
 CapsuleCollider:
@@ -223,8 +219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb77c0656002f04483ce9c0b5d82e78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
   defaultMoveSpeed: 59
+  moveSpeed: 0
   turnSpeed: 180
   mover: {fileID: 9208335658282884716}
   noiseMaker: {fileID: 9208335658282884717}
@@ -232,6 +228,10 @@ MonoBehaviour:
   ability1Cooldown: 3
   ability2Cooldown: 5
   ability3Cooldown: 30
+  ability1Timer: 0
+  ability2Timer: 0
+  ability3Timer: 0
+  targetPlayer: {fileID: 0}
   runSpeed: 80
 --- !u!114 &9208335658282884716
 MonoBehaviour:
@@ -264,6 +264,7 @@ MonoBehaviour:
   ability1AudioSource: {fileID: 3789347232744203960}
   ability2AudioSource: {fileID: 7704012363487856754}
   ability3AudioSource: {fileID: 4141458636751977451}
+  passiveAbilityAudioSource: {fileID: 0}
 --- !u!82 &6078991199420642109
 AudioSource:
   m_ObjectHideFlags: 0
@@ -274,11 +275,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 2b4c2f45e791c2747adf4598ab6c62ca, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -320,7 +321,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -416,7 +417,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -512,7 +513,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -608,7 +609,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0

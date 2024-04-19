@@ -9,6 +9,7 @@ public class PlayerControllerYokai : PlayerController
     {
         pawnYokai = transform.parent.GetComponent<PawnYokai>();
         // TODO: Make this Yokai Player the first in the players list in the GamaManager
+        GameManager.instance.players[0] = this;
     }
 
     public override void Update()

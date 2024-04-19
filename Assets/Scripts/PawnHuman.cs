@@ -9,6 +9,10 @@ public class PawnHuman : Pawn
     public override void Start()
     {
         base.Start();
+        if (targetPlayer == null)
+        {
+            targetPlayer = GameManager.instance.yokaiPlayer;
+        }
     }
 
     public override void Update()

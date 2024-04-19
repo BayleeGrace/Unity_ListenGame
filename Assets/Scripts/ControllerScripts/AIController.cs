@@ -8,23 +8,22 @@ public class AIController : Controller
     [Header("Miscellaneous Variables")]
     public AIState currentState;
     private float lastStateChangeTime;
-    private GameObject targetPlayer;
+    [HideInInspector] public GameObject targetPlayer;
     public float fleeDistance;
+    public float safeDistance;
     [Header("Waypoint Variables")]
-    public List<Transform> patrolWaypoints;
-    public Transform nearestWaypoint;
+    public PatrolWaypoint[] patrolWaypoints;
+    [HideInInspector] public Transform nearestWaypoint;
     public float waypointStopDistance;
-    public bool firstWaypointWasReached = false;
-    [Header("Senses Variables")]
-    public float hearingDistance;
-    public float fieldOfView; // Variable to hold the AI's field of view value
-    public float maxViewDistance; // Variable to determine how far the enemy can see
-    public GameObject lastHit; // Tracks what the AI is seeing in-game
-    public Vector3 collision = Vector3.zero;
+    private bool firstWaypointWasReached = false;
+
+    public virtual void Awake()
+    {
+        patrolWaypoints = FindObjectsOfType<PatrolWaypoint>();
+    }
 
     public override void Start()
     {
-        targetPlayer = pawn.targetPlayer;
         ChangeState(AIState.Patrol);
         currentState = AIState.Patrol;
     }
@@ -32,39 +31,20 @@ public class AIController : Controller
     public override void Update()
     {
         base.Update();
-    }
-
-    // Update is called once per frame
-    public void FixedUpdate()
-    {
-        ProcessInputs();
-        CheckRaycast();
+        if (targetPlayer == null)
+        {
+            targetPlayer = pawn.targetPlayer;
+        }
     }
 
     public override void ProcessInputs()
     {
+        /*
         switch(currentState)
         {
-            case AIState.Patrol:
-                // Do Patrol state
-                // check for transitions
-                DoPatrolState();
-                if (pawn.IsDistanceLessThan(targetPlayer, fleeDistance))
-                {
-                    ChangeState(AIState.Flee);
-                }
-            break;
 
-            case AIState.Flee:
-                // Do Patrol state
-                // check for transitions
-                DoFleeState();
-                if (!pawn.IsDistanceLessThan(targetPlayer, fleeDistance))
-                {
-                    ChangeState(AIState.Patrol);
-                }
-            break;
         }
+        */
     }
 
     public virtual void ChangeState(AIState newState)
@@ -73,11 +53,14 @@ public class AIController : Controller
         lastStateChangeTime = Time.time; // Tracks how long it takes to change states when ChangeState is called
     }
 
+    #region Idle State
     public void DoIdleState()
     {
-
+        // TODO: Play Idle animation
     }
+    #endregion Idle State
 
+    #region Patrol State
     public void DoPatrolState()
     {
         currentState = AIState.Patrol;
@@ -114,7 +97,7 @@ public class AIController : Controller
                 if (patrolWaypoint.gameObject != nearestWaypoint.gameObject)
                 {
                     // Find the distance between the AI and each patrolWaypoint
-                    float distanceToNewWaypoint = Vector3.Distance(patrolWaypoint.position, pawn.transform.position);
+                    float distanceToNewWaypoint = Vector3.Distance(patrolWaypoint.transform.position, pawn.transform.position);
                     if (distanceToNewWaypoint < distanceToNearestWaypoint)
                     {
                         //distanceToNewWaypoint = distanceToNearestWaypoint;
@@ -131,6 +114,9 @@ public class AIController : Controller
         FindNearestPatrolWaypoint();
     }
 
+    #endregion Patrol State
+
+    #region Chase State
     public void DoChaseState()
     {
         currentState = AIState.Chase;
@@ -140,7 +126,9 @@ public class AIController : Controller
         Seek(targetPlayer.transform.position);
         }
     }
+    #endregion Chase State
 
+    #region Seek
     public void Seek(Vector3 targetPosition)
     {
         // Chase a GAMEOBJECT's position
@@ -157,7 +145,9 @@ public class AIController : Controller
             ChangeState(AIState.Patrol);
         }
     }
+    #endregion Seek
 
+    #region Flee State
     public void DoFleeState()
     {
         currentState = AIState.Flee;
@@ -170,7 +160,9 @@ public class AIController : Controller
         // Seek the point that is "fleeVector" away from our current position
         Seek(pawn.transform.position + fleeVector);
     }
+    #endregion Flee State
 
+    #region Target Player
     public void TargetPlayerOne()
     {
         // If the GameManager exists
@@ -194,8 +186,10 @@ public class AIController : Controller
             }
         }
     }
+    #endregion Target Player
 
-    public void CheckRaycast()
+    #region Senses
+    public override void CheckRaycast()
     {
         var ray = new Ray(pawn.transform.position, pawn.transform.forward);
         RaycastHit hit;
@@ -206,36 +200,7 @@ public class AIController : Controller
         }
     }
 
-    public bool IsCanHear(GameObject targetPlayer)
-    {
-        // Get the targetPlayer's NoiseMaker
-        NoiseMaker noiseMaker = targetPlayer.GetComponent<NoiseMaker>();
-        // If they don't have one, they can't make noise, so return false
-        if (noiseMaker == null) 
-        {
-            return false;
-        }
-        // If they are making 0 noise, they also can't be heard
-        if (noiseMaker.volumeDistance <= 0) 
-        {
-            return false;
-        }
-        // If they are making noise, add the volumeDistance in the noisemaker to the hearingDistance of this AI
-        float totalDistance = noiseMaker.volumeDistance + hearingDistance;
-        // If the distance between our pawn and targetPlayer is closer than this...
-        if (Vector3.Distance(pawn.transform.position, targetPlayer.transform.position) <= totalDistance) 
-        {
-            // ... then we can hear the targetPlayer
-            return true;
-        }
-        else 
-        {
-            // Otherwise, we are too far away to hear them
-            return false;
-        }
-    }
-
-    public bool IsInLineOfSight(GameObject targetPlayer)
+    public override bool IsInLineOfSight(GameObject targetPlayer)
     {
         if (targetPlayer == lastHit)
         {
@@ -246,7 +211,7 @@ public class AIController : Controller
         }
     }
 
-    public bool IsCanSee(GameObject targetPlayer)
+    public override bool IsCanSee(GameObject targetPlayer)
     {
         // Find the vector from the agent to the targetPlayer
         Vector3 agentTotargetPlayerVector = targetPlayer.transform.position - transform.position;
@@ -263,12 +228,13 @@ public class AIController : Controller
         }
     }
 
-    protected bool IsHasTarget()
+    protected override bool IsHasTarget()
     {
         // return true, we have targetPlayer
         return (pawn.targetPlayer != null);
         // false, we dont have a targetPlayer
     }
+    #endregion Senses
     
     // Removes this object from the enemies array in the Game Manager
     /*
