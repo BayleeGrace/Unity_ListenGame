@@ -95,14 +95,12 @@ public class PawnYokai : Pawn
     {
         base.ActivateAbility1();
         DoWhisper();
-        Debug.Log("Move speed is now " + moveSpeed);
     }
     public override void DeactivateAbility1()
     {
         base.DeactivateAbility1();
         StopNoise();
         ResetVariables();
-        Debug.Log("Move speed is now " + moveSpeed);
     }
 
     public override void ActivateAbility2()
