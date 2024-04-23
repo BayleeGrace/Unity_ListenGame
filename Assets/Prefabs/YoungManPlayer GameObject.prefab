@@ -120,11 +120,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 468248237118520885}
-  fieldOfView: 0
-  maxViewDistance: 0
+  fieldOfView: 90
+  maxViewDistance: 100
   lastHit: {fileID: 0}
   collision: {x: 0, y: 0, z: 0}
-  hearingDistance: 0
+  hearingDistance: 50
   moveForwardKey: 273
   moveBackwardKey: 274
   rotateClockwiseKey: 275
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb77c0656002f04483ce9c0b5d82e78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultMoveSpeed: 59
+  defaultMoveSpeed: 60
   moveSpeed: 0
   turnSpeed: 180
   mover: {fileID: 9208335658282884716}

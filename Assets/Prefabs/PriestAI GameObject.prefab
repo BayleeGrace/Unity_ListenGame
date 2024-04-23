@@ -11,15 +11,15 @@ GameObject:
   - component: {fileID: 3276839604407722845}
   - component: {fileID: 3276839604407722842}
   - component: {fileID: 3276839604407722841}
-  - component: {fileID: 712295814}
   - component: {fileID: 712295813}
   - component: {fileID: 712295812}
   - component: {fileID: 3140836568529774804}
   - component: {fileID: 5430465137748524369}
   - component: {fileID: 1522412469398410139}
   - component: {fileID: 5094695765971066882}
+  - component: {fileID: 8098673677671330876}
   m_Layer: 0
-  m_Name: HumanPlayer GameObject
+  m_Name: PriestAI GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,6 @@ Transform:
   m_Children:
   - {fileID: 3094840730030279852}
   - {fileID: 3276839604885816249}
-  - {fileID: 3276839604936681104}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -73,32 +72,6 @@ CapsuleCollider:
   m_Height: 38.68
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0.89}
---- !u!114 &712295814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3276839604407722844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92f566a6ad6787b4d87fa676e6ed0ee9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultMoveSpeed: 50
-  moveSpeed: 0
-  turnSpeed: 175
-  mover: {fileID: 712295813}
-  noiseMaker: {fileID: 712295812}
-  noiseMakerVolume: 5
-  ability1Cooldown: 3
-  ability2Cooldown: 5
-  ability3Cooldown: 30
-  ability1Timer: 0
-  ability2Timer: 0
-  ability3Timer: 0
-  targetPlayer: {fileID: 0}
-  runSpeed: 70
 --- !u!114 &712295813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,6 +488,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8098673677671330876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3276839604407722844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e261a55164c4318b6672d99179245d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMoveSpeed: 35
+  moveSpeed: 0
+  turnSpeed: 120
+  mover: {fileID: 712295813}
+  noiseMaker: {fileID: 712295812}
+  noiseMakerVolume: 5
+  ability1Cooldown: 3
+  ability2Cooldown: 5
+  ability3Cooldown: 30
+  ability1Timer: 0
+  ability2Timer: 0
+  ability3Timer: 0
+  targetPlayer: {fileID: 0}
+  runSpeed: 50
 --- !u!1 &3276839604885816255
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,9 +523,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3276839604885816249}
-  - component: {fileID: 7901703205546619323}
+  - component: {fileID: 5816764977469866507}
   m_Layer: 0
-  m_Name: HumanPlayerController
+  m_Name: PriestAIController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -547,7 +546,7 @@ Transform:
   m_Father: {fileID: 3276839604407722845}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7901703205546619323
+--- !u!114 &5816764977469866507
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -556,108 +555,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 3276839604885816255}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae6666a9d6c8b9f47a658f5e6971dd48, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b566e181a7b04dd28f5eba4ee5254b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pawn: {fileID: 712295814}
+  pawn: {fileID: 8098673677671330876}
   fieldOfView: 90
   maxViewDistance: 100
   lastHit: {fileID: 0}
   collision: {x: 0, y: 0, z: 0}
-  hearingDistance: 50
-  moveForwardKey: 273
-  moveBackwardKey: 274
-  rotateClockwiseKey: 275
-  rotateCounterClockwiseKey: 276
-  ability1Key: 304
-  ability2Key: 101
-  ability3Key: 113
-  pauseKey: 27
-  pawnHuman: {fileID: 0}
---- !u!1 &3276839604936681109
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3276839604936681104}
-  - component: {fileID: 3276839604936681111}
-  - component: {fileID: 3276839604936681110}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3276839604936681104
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3276839604936681109}
-  m_LocalRotation: {x: 0.07576444, y: -0, z: -0, w: 0.9971258}
-  m_LocalPosition: {x: 0.9813156, y: 3.7000008, z: 6}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3276839604407722845}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 8.69, y: 0, z: 0}
---- !u!20 &3276839604936681111
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3276839604936681109}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 1
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 51.78886
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!81 &3276839604936681110
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3276839604936681109}
-  m_Enabled: 1
+  hearingDistance: 0
+  currentState: 0
+  targetPlayer: {fileID: 0}
+  fleeDistance: 120
+  safeDistance: 200
+  patrolWaypoints: []
+  nearestWaypoint: {fileID: 0}
+  waypointStopDistance: 1
+  targetPlayerController: {fileID: 0}
+  objective1Complete: 1
+  hidingWaypoint: {fileID: 0}
 --- !u!1001 &3276839604755426119
 PrefabInstance:
   m_ObjectHideFlags: 0

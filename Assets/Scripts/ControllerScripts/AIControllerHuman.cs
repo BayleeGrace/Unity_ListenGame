@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class AIControllerHuman : AIController
 {
+    [HideInInspector] public Controller targetPlayerController;
+    [HideInInspector] public bool objective1Complete = false;
     public Transform hidingWaypoint;
+
+    public override void Awake()
+    {
+        base.Awake();
+    }
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -15,6 +23,12 @@ public class AIControllerHuman : AIController
     public override void Update()
     {
         base.Update();
+        if (targetPlayer == null)
+        {
+            // Grab the controller object
+            targetPlayer = pawn.targetPlayer;
+            targetPlayerController = targetPlayer.transform.GetChild(1).gameObject.GetComponent<Controller>();
+        }
     }
 
     public override void ProcessInputs()

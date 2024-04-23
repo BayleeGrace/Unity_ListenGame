@@ -31,10 +31,6 @@ public class AIController : Controller
     public override void Update()
     {
         base.Update();
-        if (targetPlayer == null)
-        {
-            targetPlayer = pawn.targetPlayer;
-        }
     }
 
     public override void ProcessInputs()

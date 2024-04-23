@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PawnYoungMan : PawnHuman
+public class PawnPriest : PawnHuman
 {
     public override void Start()
     {

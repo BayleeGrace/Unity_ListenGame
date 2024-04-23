@@ -11,15 +11,15 @@ GameObject:
   - component: {fileID: 3276839604407722845}
   - component: {fileID: 3276839604407722842}
   - component: {fileID: 3276839604407722841}
-  - component: {fileID: 712295814}
   - component: {fileID: 712295813}
   - component: {fileID: 712295812}
   - component: {fileID: 3140836568529774804}
   - component: {fileID: 5430465137748524369}
   - component: {fileID: 1522412469398410139}
   - component: {fileID: 5094695765971066882}
+  - component: {fileID: 8098673677671330876}
   m_Layer: 0
-  m_Name: HumanPlayer GameObject
+  m_Name: PriestPlayer GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,32 +73,6 @@ CapsuleCollider:
   m_Height: 38.68
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0.89}
---- !u!114 &712295814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3276839604407722844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92f566a6ad6787b4d87fa676e6ed0ee9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultMoveSpeed: 50
-  moveSpeed: 0
-  turnSpeed: 175
-  mover: {fileID: 712295813}
-  noiseMaker: {fileID: 712295812}
-  noiseMakerVolume: 5
-  ability1Cooldown: 3
-  ability2Cooldown: 5
-  ability3Cooldown: 30
-  ability1Timer: 0
-  ability2Timer: 0
-  ability3Timer: 0
-  targetPlayer: {fileID: 0}
-  runSpeed: 70
 --- !u!114 &712295813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,6 +489,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8098673677671330876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3276839604407722844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e261a55164c4318b6672d99179245d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMoveSpeed: 35
+  moveSpeed: 0
+  turnSpeed: 120
+  mover: {fileID: 712295813}
+  noiseMaker: {fileID: 712295812}
+  noiseMakerVolume: 5
+  ability1Cooldown: 3
+  ability2Cooldown: 5
+  ability3Cooldown: 30
+  ability1Timer: 0
+  ability2Timer: 0
+  ability3Timer: 0
+  targetPlayer: {fileID: 0}
+  runSpeed: 50
 --- !u!1 &3276839604885816255
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,7 +526,7 @@ GameObject:
   - component: {fileID: 3276839604885816249}
   - component: {fileID: 7901703205546619323}
   m_Layer: 0
-  m_Name: HumanPlayerController
+  m_Name: PriestPlayerController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -559,7 +559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae6666a9d6c8b9f47a658f5e6971dd48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pawn: {fileID: 712295814}
+  pawn: {fileID: 8098673677671330876}
   fieldOfView: 90
   maxViewDistance: 100
   lastHit: {fileID: 0}

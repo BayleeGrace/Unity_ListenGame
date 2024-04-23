@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731725, g: 0.13414744, b: 0.12107873, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -405,7 +405,7 @@ GameObject:
   - component: {fileID: 193619692}
   - component: {fileID: 193619691}
   - component: {fileID: 193619690}
-  - component: {fileID: 193619689}
+  - component: {fileID: 193619693}
   m_Layer: 5
   m_Name: Main Menu Button
   m_TagString: Untagged
@@ -434,23 +434,6 @@ RectTransform:
   m_AnchoredPosition: {x: 222, y: -153}
   m_SizeDelta: {x: 170, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &193619689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 193619687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28ecb0d36798eeb4ab24d77ffb71574a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainMenu: {fileID: 663578407}
-  optionsMenu: {fileID: 0}
-  gameplayOptionsMenu: {fileID: 0}
-  volumeOptionsMenu: {fileID: 0}
-  videoOptionsMenu: {fileID: 0}
 --- !u!114 &193619690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -495,8 +478,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 193619689}
-        m_TargetAssemblyTypeName: ButtonPresses, Assembly-CSharp
+      - m_Target: {fileID: 193619693}
+        m_TargetAssemblyTypeName: ButtonPressesGameOver, Assembly-CSharp
         m_MethodName: ChangeToMainMenu
         m_Mode: 1
         m_Arguments:
@@ -545,6 +528,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 193619687}
   m_CullTransparentMesh: 1
+--- !u!114 &193619693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193619687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ae0916c2dc82214ca61986ba4a9d884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &491978868
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,14 +666,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 663578407}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28ecb0d36798eeb4ab24d77ffb71574a, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ae0916c2dc82214ca61986ba4a9d884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenu: {fileID: 663578407}
-  optionsMenu: {fileID: 0}
-  gameplayOptionsMenu: {fileID: 0}
-  volumeOptionsMenu: {fileID: 0}
-  videoOptionsMenu: {fileID: 0}
 --- !u!1 &1360357139
 GameObject:
   m_ObjectHideFlags: 0

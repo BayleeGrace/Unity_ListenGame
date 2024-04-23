@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIControllerYoungMan : AIControllerHuman
+public class AIControllerPriest : AIControllerHuman
 {
+
     public override void Awake()
     {
         base.Awake();
@@ -18,14 +19,18 @@ public class AIControllerYoungMan : AIControllerHuman
     public override void Update()
     {
         base.Update();
+        if (targetPlayer == null)
+        {
+            // Grab the controller object
+            targetPlayer = pawn.targetPlayer;
+            targetPlayerController = targetPlayer.transform.GetChild(1).gameObject.GetComponent<Controller>();
+        }
     }
 
     public override void ProcessInputs()
     {
         if (targetPlayer != null)
         {
-            if (objective1Complete == false)
-            {
                 switch(currentState)
                 {
                     case AIState.Patrol:
@@ -90,58 +95,6 @@ public class AIControllerYoungMan : AIControllerHuman
                         }
                         break;
                 }
-            }
-            else
-            {
-                switch(currentState)
-                {
-                    case AIState.Patrol:
-                        // Do Patrol state
-                        // check for transitions
-                        DoPatrolState();
-                        if (pawn.IsDistanceLessThan(targetPlayer, fleeDistance) || targetPlayerController.IsCanSee(pawn.gameObject))
-                        {
-                            ChangeState(AIState.Flee);
-                        }
-                        else if (pawn.IsDistanceLessThan(targetPlayer, fleeDistance) && !targetPlayerController.IsCanSee(pawn.gameObject))
-                        {
-                            ChangeState(AIState.Chase);
-                        }
-                        break;
-
-                    case AIState.Flee:
-                        DoFleeState();
-                        if (targetPlayer != null)
-                        {
-                            if (!pawn.IsDistanceLessThan(targetPlayer, safeDistance))
-                            {
-                                ChangeState(AIState.Patrol);
-                            }
-                            else if (pawn.IsDistanceLessThan(targetPlayer, safeDistance) && !targetPlayerController.IsCanHear(pawn.gameObject))
-                            {
-                                ChangeState(AIState.Chase);
-                            }
-                        }
-                        else
-                        {
-                            ChangeState(AIState.Patrol);
-                        }
-                        break;
-
-                    case AIState.Chase:
-                        DoChaseState();
-                        // TODO: If the pawn is InLineOfSight && is within flee distance of targetPlayer, Change state to flee
-                        if (targetPlayerController.IsInLineOfSight(pawn.gameObject) && !pawn.IsDistanceLessThan(targetPlayer, fleeDistance))
-                        {
-                            ChangeState(AIState.Flee);
-                        }
-                        else if (!pawn.IsDistanceLessThan(targetPlayer, safeDistance))
-                        {
-                            ChangeState(AIState.Patrol);
-                        }
-                        break;
-                }
-            }
         }
     }
 }
