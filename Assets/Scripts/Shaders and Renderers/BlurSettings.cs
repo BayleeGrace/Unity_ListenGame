@@ -7,7 +7,7 @@ using UnityEngine.Rendering.Universal;
 [System.Serializable, VolumeComponentMenu("Blur")]
 public class BlurSettings : VolumeComponent, IPostProcessComponent
 {
-    public ClampedFloatParameter strength = new ClampedFloatParameter(0.0f, 0.0f, 15.0f);
+    public ClampedFloatParameter strength = new ClampedFloatParameter(0.0f, 0.0f, 100.0f);
 
     public bool IsActive()
     {

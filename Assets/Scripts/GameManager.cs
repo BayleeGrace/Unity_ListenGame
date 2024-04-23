@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,12 +15,18 @@ public class GameManager : MonoBehaviour
     public GameObject[] humanPrefabs;
     public GameObject[] humanAIPrefabs;
     private GameObject[] playerPrefabs;
-    public GameObject[] spawnPoints;
+    public List<GameObject> spawnPoints;
     [HideInInspector] public GameObject yokaiPlayer;
     [HideInInspector] public GameObject humanPlayer;
     [HideInInspector] public bool isMultiplayer = false;
     private bool isPlayerOneSpawned = false;
     #endregion Player Variables
+
+    #region UI Variables
+    public GameObject pauseMenuStateObject;
+    private bool pauseMenuActive = false;
+    #endregion UI Variables
+
     #endregion Variables
     
     private void Awake()
@@ -35,10 +42,34 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject); 
         }
+    }
+    
+    private void Start()
+    {
 
-        foreach (var spawn in spawnPoints)
+    }
+
+    private void Update()
+    {
+        
+    }
+
+    /*public void DetermineSpawnPoints()
+    {
+        SpawnPoint[] newSpawnPoints = FindObjectsOfType<SpawnPoint>();
+
+        foreach (var newSpawn in newSpawnPoints)
         {
-            if (players.Count < 2)
+            Debug.Log("Spawn recognized");
+            spawnPoints.Add(newSpawn.gameObject);
+        }
+    }*/
+
+    public void SpawnPlayers()
+    {
+        if (players.Count < 2)
+        {
+            foreach (var spawn in spawnPoints)
             {
                 if (isPlayerOneSpawned == false)
                 {
@@ -58,16 +89,6 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-    }
-    
-    private void Start()
-    {
-
-    }
-
-    private void Update()
-    {
-        
     }
 
     public void SpawnPlayerOne(GameObject spawnPoint)
@@ -131,11 +152,49 @@ public class GameManager : MonoBehaviour
 
     public GameObject RandomSpawnPoint()
     {
-        return spawnPoints[Random.Range(0, spawnPoints.Length)];
+        return spawnPoints[Random.Range(0, spawnPoints.Count)];
     }
 
-    // TODO: Create a function that sets each player spawn point randomly for each player in the scene
+    #region Menu Management
 
-    // TODO: Create a function that grabs a random spawn point in the map
+    public void ActivateGameplay()
+    {
+        SceneManager.LoadSceneAsync("TestScene");
+    }
+
+    public void DeactivateGameplay()
+    {
+        spawnPoints.Clear();
+        players.Clear();
+        isPlayerOneSpawned = false;
+    }
+
+    public void ActivateGameOverScreen()
+    {
+        SceneManager.LoadSceneAsync("GameOver");
+        DeactivateGameplay();
+    }
+
+    public void ActivateMainMenu()
+    {
+        SceneManager.LoadSceneAsync("MainMenu");
+        DeactivateGameplay();
+    }
+
+    public void TogglePauseMenu()
+    {
+        if (pauseMenuActive == false)
+        {
+            pauseMenuStateObject.SetActive(true);
+            pauseMenuActive = true;
+        }
+        else 
+        {
+            pauseMenuStateObject.SetActive(false);
+            pauseMenuActive = false;
+        }
+    }
+
+    #endregion Menu Management
 
 }

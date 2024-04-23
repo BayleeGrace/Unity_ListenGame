@@ -17,7 +17,7 @@ public class BlurRenderPass : ScriptableRenderPass
     {
         source = renderer.cameraColorTarget;
         blurSettings = VolumeManager.instance.stack.GetComponent<BlurSettings>();
-        renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing; // If rendering doesn't work, try swapping to "AfterRenderingPostProcessing"
+        renderPassEvent = RenderPassEvent.AfterRenderingPostProcessing; // If rendering doesn't work, try swapping to "AfterRenderingPostProcessing"
 
         if (blurSettings != null && blurSettings.IsActive())
         {
@@ -64,7 +64,7 @@ public class BlurRenderPass : ScriptableRenderPass
 
         // Execute ffect using effect material with two passes
         cmd.Blit(source, blurTex.id, material, 0); // blit takes an input texture, reads the color, ...
-        cmd.Blit(source, blurTex.id, material, 1);
+        cmd.Blit(blurTex.id, source, material, 1);
         context.ExecuteCommandBuffer(cmd);
 
         cmd.Clear();

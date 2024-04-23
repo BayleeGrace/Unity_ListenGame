@@ -112,6 +112,7 @@ public class PawnYokai : Pawn
             {
                 // TODO: communicate with the PawnHuman and the Game Manager that the Yokai has won the game
                 Debug.Log("Player captured, game over");
+                GameManager.instance.ActivateGameOverScreen();
             }
         }
     }

@@ -79,11 +79,11 @@ public class PlayerController : Controller
             pawn.noiseMaker.StopMovingSound();
         }
 
-        /*
+        
         if (Input.GetKeyDown(pauseKey))
         {
-            GameManager.instance.ActivatePauseMenuScreen();
-        }*/
+            GameManager.instance.TogglePauseMenu();
+        }
     }
 
     // Create a function that tells the Game Manager when this player has died, thus removing it from the players List
