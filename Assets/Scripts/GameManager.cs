@@ -199,7 +199,7 @@ public class GameManager : MonoBehaviour
 
     public void ActivateGameplay()
     {
-        SceneManager.LoadSceneAsync("TestScene");
+        SceneManager.LoadSceneAsync("Garden");
         // TODO: Start the timer upon starting
     }
 
