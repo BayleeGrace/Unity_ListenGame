@@ -509,9 +509,9 @@ MonoBehaviour:
   ability1Cooldown: 3
   ability2Cooldown: 5
   ability3Cooldown: 30
-  ability1Timer: 0
-  ability2Timer: 0
-  ability3Timer: 0
+  ability1Timer: 5
+  ability2Timer: 5
+  ability3Timer: 5
   targetPlayer: {fileID: 0}
   runSpeed: 50
 --- !u!1 &3276839604885816255
@@ -564,6 +564,7 @@ MonoBehaviour:
   lastHit: {fileID: 0}
   collision: {x: 0, y: 0, z: 0}
   hearingDistance: 0
+  isStunned: 0
   currentState: 0
   targetPlayer: {fileID: 0}
   fleeDistance: 120

@@ -12,13 +12,13 @@ public class GameManager : MonoBehaviour
     public List<Controller> players;
     public List<AIController> AIs;
     public GameObject yokaiPrefab;
+    public GameObject yokaiAIPrefab;
     public GameObject[] humanPrefabs;
     public GameObject[] humanAIPrefabs;
     private GameObject[] playerPrefabs;
     public List<GameObject> spawnPoints;
     [HideInInspector] public GameObject yokaiPlayer;
     [HideInInspector] public GameObject humanPlayer;
-    [HideInInspector] public bool isMultiplayer = false;
     private bool isPlayerOneSpawned = false;
     #endregion Player Variables
 
@@ -26,6 +26,13 @@ public class GameManager : MonoBehaviour
     public GameObject pauseMenuStateObject;
     private bool pauseMenuActive = false;
     #endregion UI Variables
+
+    #region Settings Variables
+    [Header("Game Settings")]
+    [HideInInspector] public bool isMultiplayer = false;
+    [HideInInspector] public bool playerOneIsYokai = true;
+    public float timeLimit;
+    #endregion Settings Variables
 
     #endregion Variables
     
@@ -93,22 +100,44 @@ public class GameManager : MonoBehaviour
 
     public void SpawnPlayerOne(GameObject spawnPoint)
     {
-        // Get a random PLAYER CONTROLLER prefab
-        GameObject newYokai = Instantiate(yokaiPrefab, spawnPoint.transform.position, Quaternion.identity) as GameObject;
+        if (playerOneIsYokai == true)
+        {
+            // Get a random PLAYER CONTROLLER prefab
+            GameObject newYokai = Instantiate(yokaiPrefab, spawnPoint.transform.position, Quaternion.identity) as GameObject;
 
-        // Set this player to the first player in the sequence
-        yokaiPlayer = newYokai.gameObject;
+            // Set this player to the first player in the sequence
+            yokaiPlayer = newYokai.gameObject;
+        }
+        else 
+        {
+                // TODO: Get a random PLAYER CONTROLLER prefab
+                GameObject newHuman = Instantiate(RandomHumanPrefab(), spawnPoint.transform.position, Quaternion.identity) as GameObject;
+
+                // TODO: Set this player to the SECOND player in the sequence
+                humanPlayer = newHuman.gameObject;
+        }
     }
 
     public void SpawnPlayerTwo(GameObject spawnPoint)
     {
         if (isMultiplayer == true)
         {
-            // TODO: Get a random PLAYER CONTROLLER prefab
-            GameObject newHuman = Instantiate(RandomHumanPrefab(), spawnPoint.transform.position, Quaternion.identity) as GameObject;
+            if (playerOneIsYokai == true)
+            {
+                // TODO: Get a random PLAYER CONTROLLER prefab
+                GameObject newHuman = Instantiate(RandomHumanPrefab(), spawnPoint.transform.position, Quaternion.identity) as GameObject;
 
-            // TODO: Set this player to the SECOND player in the sequence
-            humanPlayer = newHuman.gameObject;
+                // TODO: Set this player to the SECOND player in the sequence
+                humanPlayer = newHuman.gameObject;
+            }
+            else
+            {
+                // Get a random PLAYER CONTROLLER prefab
+                GameObject newYokai = Instantiate(yokaiPrefab, spawnPoint.transform.position, Quaternion.identity) as GameObject;
+
+                // Set this player to the first player in the sequence
+                yokaiPlayer = newYokai.gameObject;
+            }
 
             yokaiPlayer.GetComponent<Pawn>().targetPlayer = humanPlayer;
             humanPlayer.GetComponent<Pawn>().targetPlayer = yokaiPlayer;
@@ -119,11 +148,22 @@ public class GameManager : MonoBehaviour
     {
         if (isMultiplayer == false)
         {
-            // TODO: Spawn the random AI CONTROLLER prefab from above
-            GameObject newHuman = Instantiate(RandomHumanAIPrefab(), spawnPoint.transform.position, Quaternion.identity) as GameObject;
+            if (playerOneIsYokai == true)
+            {
+                // TODO: Spawn the random AI CONTROLLER prefab from above
+                GameObject newHuman = Instantiate(RandomHumanAIPrefab(), spawnPoint.transform.position, Quaternion.identity) as GameObject;
 
-            // TODO: Set this player to the SECOND player in the sequence
-            humanPlayer = newHuman.gameObject;
+                // TODO: Set this player to the SECOND player in the sequence
+                humanPlayer = newHuman.gameObject;
+            }
+            else 
+            {
+                // Get a random PLAYER CONTROLLER prefab
+                GameObject newYokai = Instantiate(yokaiAIPrefab, spawnPoint.transform.position, Quaternion.identity) as GameObject;
+
+                // Set this player to the first player in the sequence
+                yokaiPlayer = newYokai.gameObject;
+            }
 
         }
     }
@@ -160,6 +200,7 @@ public class GameManager : MonoBehaviour
     public void ActivateGameplay()
     {
         SceneManager.LoadSceneAsync("TestScene");
+        // TODO: Start the timer upon starting
     }
 
     public void DeactivateGameplay()

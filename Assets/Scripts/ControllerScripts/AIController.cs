@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AIController : Controller
 {
-    public enum AIState { Idle, Patrol, Bloodlust, Whisper, Chase, Silent, Flee, Hide };
+    public enum AIState { Idle, Patrol, Bloodlust, Whisper, Chase, Silent, Flee, Hide, Attack };
     [Header("Miscellaneous Variables")]
     public AIState currentState;
     private float lastStateChangeTime;

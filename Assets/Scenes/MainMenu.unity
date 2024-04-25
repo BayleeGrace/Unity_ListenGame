@@ -1832,6 +1832,7 @@ GameObject:
   - component: {fileID: 270176453}
   - component: {fileID: 270176452}
   - component: {fileID: 270176451}
+  - component: {fileID: 270176454}
   m_Layer: 0
   m_Name: Character ChoiceDropdown
   m_TagString: Untagged
@@ -1914,15 +1915,23 @@ MonoBehaviour:
     m_Options:
     - m_Text: Tenome Yokai
       m_Image: {fileID: 0}
-    - m_Text: Young Man (Human)
-      m_Image: {fileID: 0}
-    - m_Text: Priest (Human)
-      m_Image: {fileID: 0}
-    - m_Text: Witch (Human)
+    - m_Text: Human
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 270176454}
+        m_TargetAssemblyTypeName: GameSettingChanges, Assembly-CSharp
+        m_MethodName: OnCharacterChoiceChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &270176452
 MonoBehaviour:
@@ -1962,6 +1971,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 270176449}
   m_CullTransparentMesh: 1
+--- !u!114 &270176454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270176449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c06731b8504b4c61b79cd49949c1ed2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterChoiceDropdown: {fileID: 270176451}
 --- !u!1 &272663175
 GameObject:
   m_ObjectHideFlags: 0
@@ -8420,6 +8442,7 @@ MonoBehaviour:
   players: []
   AIs: []
   yokaiPrefab: {fileID: 3861336430807849581, guid: 519415eaf5da51e4d857a013bd5caa7a, type: 3}
+  yokaiAIPrefab: {fileID: 3861336430807849581, guid: 39edb3b6c9b42437085fa006b69dff20, type: 3}
   humanPrefabs:
   - {fileID: 5959168563772143797, guid: 36b7e12311205c948b4134da8bd85383, type: 3}
   - {fileID: 3276839604407722844, guid: 90affff22e29241adb0c3def7d10841f, type: 3}
@@ -8429,8 +8452,10 @@ MonoBehaviour:
   spawnPoints: []
   yokaiPlayer: {fileID: 0}
   humanPlayer: {fileID: 0}
-  isMultiplayer: 0
   pauseMenuStateObject: {fileID: 0}
+  isMultiplayer: 0
+  playerOneIsYokai: 1
+  timeLimit: 0
 --- !u!4 &1613453222
 Transform:
   m_ObjectHideFlags: 0

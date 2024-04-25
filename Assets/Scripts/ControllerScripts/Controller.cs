@@ -12,6 +12,7 @@ public class Controller : MonoBehaviour
     public GameObject lastHit; // Tracks what the AI is seeing in-game
     public Vector3 collision = Vector3.zero;
     public float hearingDistance;
+    [HideInInspector] public bool isStunned = false;
 
     public virtual void Start()
     {

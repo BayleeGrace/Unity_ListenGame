@@ -37,9 +37,13 @@ public class AIControllerPriest : AIControllerHuman
                         // Do Patrol state
                         // check for transitions
                         DoPatrolState();
-                        if (pawn.IsDistanceLessThan(targetPlayer, fleeDistance))
+                        if (pawn.IsDistanceLessThan(targetPlayer, fleeDistance) && (targetPlayerController.IsCanSee(pawn.gameObject)))
                         {
                             ChangeState(AIState.Flee);
+                        }
+                        if (pawn.IsDistanceLessThan(targetPlayer, fleeDistance) && (!targetPlayerController.IsCanSee(pawn.gameObject)))
+                        {
+                            ChangeState(AIState.Chase);
                         }
                         break;
 
@@ -47,9 +51,9 @@ public class AIControllerPriest : AIControllerHuman
                         DoFleeState();
                         if (targetPlayer != null)
                         {
-                            if (!pawn.IsDistanceLessThan(targetPlayer, fleeDistance) && pawn.IsDistanceLessThan(targetPlayer, safeDistance))
+                            if (pawn.IsDistanceLessThan(targetPlayer, fleeDistance) && (!targetPlayerController.IsCanSee(pawn.gameObject)))
                             {
-                                ChangeState(AIState.Hide);
+                                ChangeState(AIState.Chase);
                             }
                             else if (!pawn.IsDistanceLessThan(targetPlayer, safeDistance))
                             {
@@ -62,39 +66,28 @@ public class AIControllerPriest : AIControllerHuman
                         }
                         break;
 
-                    case AIState.Hide:
-                        DoHideState();
-                        // If the targetPlayer is outside of the safe distance then switch to Patrol State
-                        if (!pawn.IsDistanceLessThan(targetPlayer, safeDistance))
-                        {
-                            ChangeState(AIState.Patrol);
-                        }
-                        break;
-
-                    case AIState.Silent:
-                        DoSilentState();
-                        // If the targetPlayer is outside of the safe distance then change to patrol state
-                        if (!pawn.IsDistanceLessThan(targetPlayer, safeDistance))
-                        {
-                            ChangeState(AIState.Patrol);
-                        }
-
-                        // Else if the targetPlayer is within fleeDistance, change to the flee state
-                        else if (pawn.IsDistanceLessThan(targetPlayer, safeDistance))
-                        {
-                            ChangeState(AIState.Flee);
-                        }
-                        break;
-
                     case AIState.Chase:
                         DoChaseState();
                         // TODO: If the pawn is InLineOfSight && is within flee distance of targetPlayer, Change state to flee
-                        if (IsInLineOfSight(targetPlayer) && !pawn.IsDistanceLessThan(targetPlayer, fleeDistance))
+                        if (targetPlayerController.IsCanSee(pawn.gameObject) && pawn.IsDistanceLessThan(targetPlayer, fleeDistance))
                         {
+                            ChangeState(AIState.Flee);
+                        }
+                        if (pawn.IsDistanceLessThan(targetPlayer, (fleeDistance/2)) && IsInLineOfSight(targetPlayer))
+                        {
+                            StunYokai();
                             ChangeState(AIState.Flee);
                         }
                         break;
                 }
         }
+    }
+
+    public void StunYokai()
+    {
+        targetPlayerController.isStunned = true;
+        // TODO: Start ability timer
+
+        // TODO: reduce the # needed to stun the yokai again in the Objective
     }
 }

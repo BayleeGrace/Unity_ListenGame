@@ -24,13 +24,12 @@ public abstract class Pawn : MonoBehaviour
     public float ability1Cooldown;
     public float ability2Cooldown;
     public float ability3Cooldown;
-    private bool cooldownActive;
-    private float cooldown;
     #endregion Cooldown Timers
     #region Ability Timers
     public float ability1Timer;
     public float ability2Timer;
     public float ability3Timer;
+    [HideInInspector] public string currentAbility;
     #endregion Ability Timers
     #endregion Ability Variables
     public GameObject targetPlayer;
@@ -44,7 +43,7 @@ public abstract class Pawn : MonoBehaviour
 
     public virtual void Update()
     {
-        
+
     }
 
     public abstract void MoveForward();
@@ -56,12 +55,12 @@ public abstract class Pawn : MonoBehaviour
     public abstract void StopNoise();
     public virtual void StartAbilitiesTimer(float timer)
     {
-        // TODO: Create a timer system based on the input given
-        // This timer will track how long the ability will last
+
     }
     public virtual void StartAbilitiesCooldown(float timer)
     {
         // TODO: Create a timer system based on the input given
+
         // This timer will track how long until the ability can be used again
     }
 

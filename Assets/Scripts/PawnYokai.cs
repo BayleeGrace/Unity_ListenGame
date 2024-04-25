@@ -95,6 +95,8 @@ public class PawnYokai : Pawn
     {
         base.ActivateAbility1();
         DoWhisper();
+        StartAbilitiesTimer(ability1Timer);
+        noiseMaker.PlayAbility1Sound();
     }
     public override void DeactivateAbility1()
     {
