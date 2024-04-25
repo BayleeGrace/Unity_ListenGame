@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PawnYokai : Pawn
 {
@@ -10,10 +11,17 @@ public class PawnYokai : Pawn
     public float distanceToInteract;
     public float distanceToBloodlust;
 
+    private GameObject canvas;
+
     public override void Start()
     {
         base.Start();
         targetPlayer = GameManager.instance.humanPlayer;
+        canvas = transform.GetChild(5).gameObject;
+        if (canvas != null)
+        {
+            canvas.SetActive(false);
+        }
     }
 
     public override void Update()
@@ -102,6 +110,11 @@ public class PawnYokai : Pawn
     {
         base.DeactivateAbility1();
         StopNoise();
+        if (canvas != null)
+        {
+            GameObject filter = canvas.transform.GetChild(0).gameObject;
+            filter.SetActive(true);
+        }
         ResetVariables();
     }
 
@@ -147,6 +160,10 @@ public class PawnYokai : Pawn
         base.DeactivatePassiveAbility();
         StopNoise();
         ResetVariables();
+        if (canvas != null)
+        {
+            canvas.SetActive(false);
+        }
     }
 
     public void DoWhisper()
@@ -164,6 +181,11 @@ public class PawnYokai : Pawn
         }
 
         // TODO: Clear FOV for player
+        if (canvas != null)
+        {
+            GameObject filter = canvas.transform.GetChild(0).gameObject;
+            filter.SetActive(false);
+        }
 
     }
 
@@ -175,6 +197,10 @@ public class PawnYokai : Pawn
         SetMovementSpeed(bloodlustMoveSpeed);
 
         // TODO: Blur FOV for player even more
+        if (canvas != null)
+        {
+            canvas.SetActive(true);
+        }
 
     }
 
