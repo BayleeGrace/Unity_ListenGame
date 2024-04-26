@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Garden.unity
     guid: 2e58cd248cf8747d1ae9f6217b7a45c1
   - enabled: 1
+    path: Assets/Scenes/GeneratedMap.unity
+    guid: c12f1a123efb84ac0b0505d9532da9af
+  - enabled: 1
     path: Assets/Scenes/TestScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1

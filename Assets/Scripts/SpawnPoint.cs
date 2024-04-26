@@ -6,7 +6,10 @@ public class SpawnPoint : MonoBehaviour
 {
     public void Awake()
     {
-        GameManager.instance.spawnPoints.Add(this.gameObject);
+        if (GameManager.instance.spawnPoints.Count <= 2)
+        {
+            GameManager.instance.spawnPoints.Add(this.gameObject);
+        }
     }
 
     public void OnDestroy()

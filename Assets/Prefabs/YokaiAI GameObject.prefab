@@ -102,6 +102,7 @@ MonoBehaviour:
   dashMoveSpeed: 200
   distanceToInteract: 40
   distanceToBloodlust: 150
+  controller: {fileID: 0}
 --- !u!114 &3861336430807849582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,7 +432,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3861336432359668360}
-  - component: {fileID: 8601886143265624362}
+  - component: {fileID: 972050002946743541}
   m_Layer: 0
   m_Name: YokaiPlayerController
   m_TagString: Untagged
@@ -454,7 +455,7 @@ Transform:
   m_Father: {fileID: 3861336430807849580}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8601886143265624362
+--- !u!114 &972050002946743541
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -463,23 +464,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 3861336432359668366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c5cbfcff65772343a3a1c5c8425b59f, type: 3}
+  m_Script: {fileID: 11500000, guid: 208a4be5ef2db47d49a6abc956613e9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 3861336430807849577}
   fieldOfView: 90
-  maxViewDistance: 100
+  maxViewDistance: 120
   lastHit: {fileID: 0}
   collision: {x: 0, y: 0, z: 0}
-  hearingDistance: 50
+  hearingDistance: 5
   isStunned: 0
   currentState: 0
   targetPlayer: {fileID: 0}
-  fleeDistance: 120
-  safeDistance: 200
+  fleeDistance: 50
+  safeDistance: 100
   patrolWaypoints: []
   nearestWaypoint: {fileID: 0}
   waypointStopDistance: 1
+  targetPlayerController: {fileID: 0}
 --- !u!1001 &3861336432229749366
 PrefabInstance:
   m_ObjectHideFlags: 0

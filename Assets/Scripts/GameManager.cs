@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public GameObject[] humanAIPrefabs;
     private GameObject[] playerPrefabs;
     public List<GameObject> spawnPoints;
+    public GameObject yokaiSpawn;
+    public GameObject humanSpawn;
     [HideInInspector] public GameObject yokaiPlayer;
     [HideInInspector] public GameObject humanPlayer;
     private bool isPlayerOneSpawned = false;
@@ -33,6 +35,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool playerOneIsYokai = true;
     public float timeLimit;
     #endregion Settings Variables
+
+    public MapGenerator mapGenerator;
+    //[HideInInspector] public GameObject currentMap;
 
     #endregion Variables
     
@@ -87,7 +92,7 @@ public class GameManager : MonoBehaviour
                 {
                     if (isMultiplayer == true)
                     {
-                        SpawnPlayerTwo(spawn);
+                        SpawnPlayerTwo(humanSpawn);
                     }
                     else if (isMultiplayer == false)
                     {
@@ -110,12 +115,13 @@ public class GameManager : MonoBehaviour
         }
         else 
         {
-                // TODO: Get a random PLAYER CONTROLLER prefab
-                GameObject newHuman = Instantiate(RandomHumanPrefab(), spawnPoint.transform.position, Quaternion.identity) as GameObject;
+            // TODO: Get a random PLAYER CONTROLLER prefab
+            GameObject newHuman = Instantiate(RandomHumanPrefab(), spawnPoint.transform.position, Quaternion.identity) as GameObject;
 
-                // TODO: Set this player to the SECOND player in the sequence
-                humanPlayer = newHuman.gameObject;
+            // TODO: Set this player to the SECOND player in the sequence
+            humanPlayer = newHuman.gameObject;
         }
+        
     }
 
     public void SpawnPlayerTwo(GameObject spawnPoint)
@@ -133,7 +139,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 // Get a random PLAYER CONTROLLER prefab
-                GameObject newYokai = Instantiate(yokaiPrefab, spawnPoint.transform.position, Quaternion.identity) as GameObject;
+                GameObject newYokai = Instantiate(yokaiAIPrefab, spawnPoint.transform.position, Quaternion.identity) as GameObject;
 
                 // Set this player to the first player in the sequence
                 yokaiPlayer = newYokai.gameObject;
@@ -192,15 +198,24 @@ public class GameManager : MonoBehaviour
 
     public GameObject RandomSpawnPoint()
     {
-        return spawnPoints[Random.Range(0, spawnPoints.Count)];
+        return spawnPoints[Random.Range(0, 1)];
     }
 
     #region Menu Management
 
     public void ActivateGameplay()
     {
-        SceneManager.LoadSceneAsync("Garden");
         // TODO: Start the timer upon starting
+
+
+            SceneManager.LoadSceneAsync("GeneratedMap");
+            //mapGenerator.SetMap();
+            //currentMap = mapGenerator.newGeneratedMapGameObject;
+            //DetermineSpawnPoints();
+        /*else 
+        {
+            SceneManager.LoadSceneAsync("Garden");
+        }*/
     }
 
     public void DeactivateGameplay()

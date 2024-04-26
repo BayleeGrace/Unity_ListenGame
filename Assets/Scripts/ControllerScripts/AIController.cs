@@ -60,7 +60,7 @@ public class AIController : Controller
     public void DoPatrolState()
     {
         currentState = AIState.Patrol;
-        if (patrolWaypoints != null)
+        if (patrolWaypoints.Length > 0)
         {
             FindNearestPatrolWaypoint();
             Seek(nearestWaypoint.position);

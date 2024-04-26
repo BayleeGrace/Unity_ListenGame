@@ -609,6 +609,7 @@ MonoBehaviour:
   dashMoveSpeed: 200
   distanceToInteract: 40
   distanceToBloodlust: 150
+  controller: {fileID: 3861336432359668361}
 --- !u!114 &3861336430807849582
 MonoBehaviour:
   m_ObjectHideFlags: 0

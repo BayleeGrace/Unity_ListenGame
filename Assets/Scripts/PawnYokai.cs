@@ -11,16 +11,21 @@ public class PawnYokai : Pawn
     public float distanceToInteract;
     public float distanceToBloodlust;
 
+    public Controller controller;
+
     private GameObject canvas;
 
     public override void Start()
     {
         base.Start();
         targetPlayer = GameManager.instance.humanPlayer;
-        canvas = transform.GetChild(5).gameObject;
-        if (canvas != null)
+        if (controller != null)
         {
-            canvas.SetActive(false);
+            canvas = transform.GetChild(5).gameObject;
+            if (canvas != null)
+            {
+                canvas.SetActive(false);
+            }
         }
     }
 
