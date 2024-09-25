@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
 
     public MapGenerator mapGenerator;
     //[HideInInspector] public GameObject currentMap;
+    public int currentMapInt;
 
     #endregion Variables
     
@@ -92,7 +93,7 @@ public class GameManager : MonoBehaviour
                 {
                     if (isMultiplayer == true)
                     {
-                        SpawnPlayerTwo(humanSpawn);
+                        SpawnPlayerTwo(spawn);
                     }
                     else if (isMultiplayer == false)
                     {
@@ -208,7 +209,7 @@ public class GameManager : MonoBehaviour
         // TODO: Start the timer upon starting
 
 
-            SceneManager.LoadSceneAsync("GeneratedMap");
+            SceneManager.LoadSceneAsync(currentMapInt);
             //mapGenerator.SetMap();
             //currentMap = mapGenerator.newGeneratedMapGameObject;
             //DetermineSpawnPoints();

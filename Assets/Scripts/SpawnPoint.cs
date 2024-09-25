@@ -6,7 +6,8 @@ public class SpawnPoint : MonoBehaviour
 {
     public void Awake()
     {
-        if (GameManager.instance.spawnPoints.Count <= 2)
+        if (GameManager.instance.spawnPoints.Count <= 1
+        )
         {
             GameManager.instance.spawnPoints.Add(this.gameObject);
         }

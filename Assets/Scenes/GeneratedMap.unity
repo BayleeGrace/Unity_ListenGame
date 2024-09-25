@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028355, g: 0.22571374, b: 0.30692255, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -269,6 +269,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridPrefab:
   - {fileID: 6242216663270140342, guid: 0dbda6a530729489e85b1ef527b0f041, type: 3}
+  - {fileID: 6242216663270140342, guid: 652e55c230ad24310a602ca645496e27, type: 3}
+  - {fileID: 6242216663270140342, guid: 3c8239d38e9ce83408641b7dca9089c8, type: 3}
+  - {fileID: 6242216663270140342, guid: e66de1b620fa4fe4aa97851c42bf6289, type: 3}
   rows: 2
   cols: 2
   roomWidth: 170

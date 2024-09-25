@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731725, g: 0.13414744, b: 0.12107873, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -430,7 +430,7 @@ RectTransform:
   m_GameObject: {fileID: 663578407}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3271, y: 1.3271, z: 1.3271}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1280665029}
@@ -442,7 +442,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -1.8983, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &663578409
@@ -738,7 +738,7 @@ RectTransform:
   m_GameObject: {fileID: 1430648934}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3271, y: 1.3271, z: 1.3271}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1360357143}
@@ -746,7 +746,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -1.8983, y: 0}
   m_SizeDelta: {x: 1102, y: 542}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1430648936
@@ -943,12 +943,16 @@ MonoBehaviour:
   humanAIPrefabs:
   - {fileID: 7388565535118682525, guid: 6872caccca84e454ba3a470cbcc277f6, type: 3}
   spawnPoints: []
+  yokaiSpawn: {fileID: 0}
+  humanSpawn: {fileID: 0}
   yokaiPlayer: {fileID: 0}
   humanPlayer: {fileID: 0}
   pauseMenuStateObject: {fileID: 0}
   isMultiplayer: 0
   playerOneIsYokai: 1
   timeLimit: 0
+  mapGenerator: {fileID: 0}
+  currentMapInt: 0
 --- !u!4 &1613453222
 Transform:
   m_ObjectHideFlags: 0
